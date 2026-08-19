@@ -139,10 +139,7 @@ Setiap instalasi memerlukan license key yang valid. Masukkan konfigurasi yang
 diberikan bersama lisensi ke `/etc/radbill/radbill.env`:
 
 ```dotenv
-RADBILL_LICENSE_SERVER_URL=https://license.example.com
-RADBILL_LICENSE_MANAGER_URL=https://license.example.com/client/
 RADBILL_LICENSE_KEY=<license-key>
-RADBILL_LICENSE_PUBLIC_KEY=<public-key-ed25519>
 ```
 
 Setelah konfigurasi disimpan:
