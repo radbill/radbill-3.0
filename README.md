@@ -64,7 +64,6 @@ tersedia sesuai arsitektur yang diterbitkan:
 
 - Linux `amd64`
 - Linux `arm64`
-- Linux `arm` (ARMv7)
 
 Installer menyiapkan PostgreSQL, user service, konfigurasi, systemd unit, log
 rotation, runtime aplikasi, serta agent yang diperlukan. WireGuard dapat
