@@ -1,0 +1,281 @@
+/* Add-ons design aligned with the established customer portal treatment. */
+.speed-boost-status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  width: fit-content;
+  padding: 0.3rem 0.65rem;
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  border-radius: 999px;
+  color: #059669;
+  background: rgba(16, 185, 129, 0.12);
+  font-size: var(--text-caption-size);
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.speed-boost-status-badge.is-pending {
+  color: #b45309;
+  border-color: rgba(245, 158, 11, 0.28);
+  background: rgba(245, 158, 11, 0.12);
+}
+
+.speed-boost-pulse {
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 999px;
+  background: currentColor;
+  box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.65);
+  animation: speed-boost-pulse 1.8s infinite;
+}
+
+@keyframes speed-boost-pulse {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.65); }
+  70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+}
+
+.addon-active-hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+  padding: 1.25rem;
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  border-radius: 1.25rem;
+  background:
+    radial-gradient(circle at top right, rgba(16, 185, 129, 0.15), transparent 45%),
+    linear-gradient(135deg, rgba(236, 253, 245, 0.95), rgba(240, 253, 250, 0.95));
+  box-shadow: 0 10px 25px rgba(16, 185, 129, 0.08);
+}
+
+.addon-active-hero.is-pending {
+  border-color: rgba(245, 158, 11, 0.24);
+  background:
+    radial-gradient(circle at top right, rgba(245, 158, 11, 0.13), transparent 45%),
+    linear-gradient(135deg, rgba(255, 251, 235, 0.95), rgba(255, 247, 237, 0.95));
+}
+
+.addon-active-hero__left {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.addon-active-hero__rate {
+  margin: 0.15rem 0 0;
+  color: #065f46;
+  font-size: 1.35rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.addon-active-hero.is-pending .addon-active-hero__rate { color: #92400e; }
+
+.addon-active-hero__expiry {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 0.25rem;
+  color: #047857;
+  font-size: var(--text-helper-size);
+}
+
+.addon-active-hero.is-pending .addon-active-hero__expiry { color: #b45309; }
+.addon-active-hero__expiry svg { width: 0.95rem; height: 0.95rem; }
+
+.addon-active-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin-top: 0.5rem;
+}
+
+.addon-active-hero__badge {
+  display: grid;
+  flex: 0 0 auto;
+  place-items: center;
+  width: 4rem;
+  height: 4rem;
+  border-radius: 1.15rem;
+  color: #059669;
+  background: rgba(16, 185, 129, 0.15);
+}
+
+.addon-active-hero.is-pending .addon-active-hero__badge { color: #d97706; background: rgba(245, 158, 11, 0.14); }
+
+.addon-banner-card {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.25rem;
+  border: 1px solid rgba(71, 117, 237, 0.2);
+  border-radius: 1.25rem;
+  background:
+    radial-gradient(circle at top right, rgba(71, 117, 237, 0.12), transparent 45%),
+    linear-gradient(135deg, rgba(240, 244, 255, 0.95), rgba(248, 250, 255, 0.95));
+}
+
+.addon-banner-card__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-bottom: 0.35rem;
+  padding: 0.25rem 0.65rem;
+  border-radius: 999px;
+  color: #315ed9;
+  background: rgba(71, 117, 237, 0.1);
+  font-size: var(--text-caption-size);
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.addon-banner-card__badge svg,
+.addon-banner-card__cta svg,
+.portal-heading-with-icon svg { width: 1rem; height: 1rem; }
+
+.addon-banner-card__title { margin: 0; color: #0f172a; font-size: 1.15rem; font-weight: 700; }
+.addon-banner-card__desc { max-width: 580px; margin: 0.25rem 0 0; color: var(--color-text-muted); font-size: var(--text-helper-size); line-height: 1.55; }
+.addon-banner-card__cta { flex: 0 0 auto; width: auto !important; }
+
+.addon-catalog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+}
+
+.addon-catalog-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1.15rem;
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  border-radius: 1.15rem;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.03);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+}
+
+.addon-catalog-card:hover { transform: translateY(-2px); border-color: rgba(71, 117, 237, 0.35); box-shadow: 0 10px 22px rgba(71, 117, 237, 0.08); }
+.addon-catalog-card__header { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; }
+
+.addon-rate-pill,
+.speed-boost-duration-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.28rem 0.65rem;
+  border-radius: 999px;
+  font-size: var(--text-label-size);
+  font-weight: 800;
+}
+
+.addon-rate-pill { color: #315ed9; background: rgba(71, 117, 237, 0.12); }
+.speed-boost-duration-pill { color: #475569; background: rgba(148, 163, 184, 0.12); font-size: var(--text-caption-size); font-weight: 600; }
+.addon-rate-pill svg, .speed-boost-duration-pill svg { width: 0.85rem; height: 0.85rem; }
+.addon-catalog-card__name { margin: 0; color: #0f172a; font-size: 1.05rem; font-weight: 700; }
+.addon-catalog-card__desc { flex: 1 1 auto; margin: 0; color: var(--color-text-muted); font-size: var(--text-helper-size); line-height: 1.55; }
+.addon-catalog-card__footer { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; padding-top: 0.75rem; border-top: 1px solid rgba(148, 163, 184, 0.12); }
+.addon-catalog-card__price { display: flex; flex-direction: column; }
+.addon-catalog-card__price strong { color: #0f172a; font-size: 1.1rem; font-weight: 800; }
+.addon-catalog-card__footer .btn { width: auto; padding: 0.55rem 0.95rem; font-size: var(--text-helper-size); }
+
+.addon-extras-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; }
+.addon-extra-card { display: flex; align-items: flex-start; gap: 1rem; padding: 1.15rem; border: 1px solid rgba(71, 117, 237, 0.14); border-radius: 1.15rem; background: rgba(247, 249, 255, 0.85); }
+.addon-extra-card__icon { display: grid; flex: 0 0 auto; place-items: center; width: 2.75rem; height: 2.75rem; border-radius: 0.95rem; color: #4775ed; background: rgba(71, 117, 237, 0.1); }
+.addon-extra-card__icon svg { width: 1.35rem; height: 1.35rem; }
+.addon-extra-card__body { display: flex; flex-direction: column; gap: 0.3rem; }
+.addon-extra-card__body strong { color: #0f172a; font-size: var(--text-body-strong-size); }
+.addon-extra-card__body p { margin: 0; color: var(--color-text-muted); font-size: var(--text-helper-size); line-height: 1.55; }
+.addon-extra-card__tag { margin-top: 0.35rem; color: #315ed9; font-size: var(--text-caption-size); font-weight: 700; }
+
+.speed-boost-modal__sheet { width: min(100%, 38rem); }
+.speed-boost-modal__title { display: inline-flex; align-items: center; gap: 0.45rem; }
+.speed-boost-modal__title svg { width: 1.2rem; height: 1.2rem; color: #4775ed; }
+.speed-boost-modal__body { display: flex; flex-direction: column; gap: 1rem; padding: 1.15rem; overflow-y: auto; }
+.speed-boost-modal__section-header { display: flex; flex-direction: column; gap: 0.2rem; }
+.speed-boost-modal__section-header strong { color: #0f172a; font-size: var(--text-body-strong-size); }
+.speed-boost-modal__section-header span { color: var(--color-text-muted); font-size: var(--text-helper-size); }
+.speed-boost-card { display: flex; flex-direction: column; gap: 0.45rem; padding: 1rem; border-radius: 1rem; }
+.speed-boost-card--active { border: 1px solid rgba(16, 185, 129, 0.25); background: rgba(16, 185, 129, 0.08); }
+.speed-boost-card--pending { border: 1px solid rgba(245, 158, 11, 0.25); background: rgba(245, 158, 11, 0.08); }
+.speed-boost-card__badge-row { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; }
+.speed-boost-card__title { margin: 0; color: #0f172a; font-size: 1rem; font-weight: 700; }
+.speed-boost-card__expiry { display: flex; align-items: center; gap: 0.35rem; color: #047857; font-size: var(--text-helper-size); }
+.speed-boost-card__expiry svg { width: 0.9rem; height: 0.9rem; }
+.speed-boost-offer-list { display: flex; flex-direction: column; gap: 0.65rem; }
+
+.speed-boost-offer-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.85rem;
+  width: 100%;
+  padding: 0.95rem 1.1rem;
+  border: 1.5px solid rgba(148, 163, 184, 0.2);
+  border-radius: 1rem;
+  color: inherit;
+  background: rgba(255, 255, 255, 0.96);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.speed-boost-offer-card:hover { border-color: rgba(71, 117, 237, 0.45); background: rgba(247, 250, 255, 0.98); }
+.speed-boost-offer-card--selected { border-color: #4775ed; background: rgba(240, 245, 255, 0.98); box-shadow: 0 0 0 1px #4775ed; }
+.speed-boost-offer-card__left { display: flex; align-items: center; gap: 0.85rem; min-width: 0; }
+.speed-boost-offer-card__rate-badge { display: inline-flex; flex: 0 0 auto; align-items: center; gap: 0.35rem; padding: 0.45rem 0.75rem; border-radius: 0.85rem; color: #315ed9; background: rgba(71, 117, 237, 0.12); }
+.speed-boost-offer-card__rate-badge svg { width: 1rem; height: 1rem; }
+.speed-boost-offer-card__info { display: flex; flex-direction: column; gap: 0.2rem; min-width: 0; }
+.speed-boost-offer-card__info > span:not(.speed-boost-duration-pill) { color: var(--color-text-muted); font-size: var(--text-helper-size); }
+.speed-boost-offer-card__right { display: flex; flex: 0 0 auto; align-items: center; gap: 0.75rem; }
+.speed-boost-offer-card__price strong { color: #0f172a; font-size: 1.05rem; font-weight: 800; }
+.speed-boost-select-indicator { display: grid; place-items: center; width: 1.45rem; height: 1.45rem; border: 1.5px solid rgba(148, 163, 184, 0.4); border-radius: 999px; color: #fff; }
+.speed-boost-select-indicator.is-selected { border-color: #4775ed; background: #4775ed; }
+.speed-boost-select-indicator svg { width: 0.85rem; height: 0.85rem; }
+.speed-boost-summary-box { display: flex; flex-direction: column; gap: 0.4rem; padding: 0.9rem 1rem; border: 1px solid rgba(71, 117, 237, 0.16); border-radius: 0.95rem; background: rgba(247, 249, 255, 0.95); }
+.speed-boost-summary-row { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; font-size: var(--text-label-size); }
+.speed-boost-summary-row span { color: var(--color-text-muted); }
+
+.addon-history-list { display: grid; gap: 0.1rem; }
+.addon-history-row { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 0.85rem 0.2rem; border-bottom: 1px solid rgba(148, 163, 184, 0.14); }
+.addon-history-row:last-child { border-bottom: 0; }
+.addon-history-row > div { display: grid; gap: 0.3rem; }
+.addon-history-row > div:last-child { justify-items: end; }
+.addon-history-row span:not(.status-chip) { color: var(--color-text-muted); font-size: var(--text-caption-size); }
+.addon-history-row .status-chip {
+  min-height: 0;
+  padding: 0.3rem 0.65rem;
+  font-size: var(--text-caption-size);
+  line-height: normal;
+  letter-spacing: 0.03em;
+  text-transform: none;
+}
+
+.addon-history-list__footer {
+  display: grid;
+  justify-items: center;
+  gap: 0.55rem;
+  padding-top: 0.9rem;
+  color: var(--color-text-muted);
+  font-size: var(--text-caption-size);
+  text-align: center;
+}
+
+.addon-history-list__footer .btn { min-width: 10.5rem; }
+
+@media (max-width: 720px) {
+  .addon-active-hero { align-items: flex-start; }
+  .addon-active-hero__badge { width: 3.25rem; height: 3.25rem; }
+  .addon-active-hero__actions { flex-direction: column; }
+  .addon-banner-card__cta, .addon-active-hero__actions .btn { width: 100% !important; }
+  .addon-catalog-card__footer { align-items: flex-end; }
+  .speed-boost-offer-card { align-items: flex-start; }
+  .speed-boost-offer-card__left { align-items: flex-start; }
+  .speed-boost-offer-card__right { flex-direction: column; align-items: flex-end; }
+  .speed-boost-card__badge-row { align-items: flex-start; flex-direction: column; }
+}

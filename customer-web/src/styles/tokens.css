@@ -1,0 +1,107 @@
+:root {
+  color-scheme: light;
+  --font-size-root: 16px;
+  --font-sans: 'Outfit', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  --font-size-xs: 0.74rem;
+  --font-size-sm: 0.82rem;
+  --font-size-md: 0.87rem;
+  --font-size-base: 0.95rem;
+  --font-size-lg: 1rem;
+  --font-size-xl: 1.42rem;
+  --font-size-2xl: clamp(1.36rem, 1.95vw, 1.9rem);
+
+  --line-height-tight: 1.2;
+  --line-height-snug: 1.35;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.6;
+
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+
+  --letter-spacing-tight: -0.02em;
+  --letter-spacing-snug: -0.01em;
+  --letter-spacing-normal: 0.01em;
+
+  --text-eyebrow-size: var(--font-size-xs);
+  --text-eyebrow-weight: var(--font-weight-bold);
+  --text-eyebrow-spacing: 0.08em;
+
+  --text-label-size: var(--font-size-sm);
+  --text-label-weight: var(--font-weight-bold);
+  --text-label-line-height: var(--line-height-snug);
+
+  --text-caption-size: var(--font-size-xs);
+  --text-caption-weight: var(--font-weight-medium);
+  --text-caption-line-height: var(--line-height-normal);
+
+  --text-body-size: var(--font-size-md);
+  --text-body-weight: var(--font-weight-medium);
+  --text-body-line-height: var(--line-height-normal);
+
+  --text-body-strong-size: var(--font-size-md);
+  --text-body-strong-weight: var(--font-weight-semibold);
+  --text-body-strong-line-height: var(--line-height-snug);
+
+  --text-title-size: var(--font-size-base);
+  --text-title-weight: var(--font-weight-bold);
+  --text-title-line-height: var(--line-height-snug);
+  --text-title-spacing: var(--letter-spacing-snug);
+
+  --text-hero-size: var(--font-size-xl);
+  --text-hero-weight: var(--font-weight-bold);
+  --text-hero-line-height: var(--line-height-tight);
+  --text-hero-spacing: var(--letter-spacing-tight);
+
+  --text-metric-size: var(--font-size-lg);
+  --text-metric-weight: var(--font-weight-bold);
+  --text-metric-line-height: var(--line-height-tight);
+  --text-metric-spacing: var(--letter-spacing-tight);
+
+  --text-metric-compact-size: var(--font-size-base);
+  --text-metric-compact-weight: var(--font-weight-extrabold);
+  --text-metric-compact-line-height: 1.25;
+
+  --text-badge-size: var(--font-size-xs);
+  --text-badge-weight: var(--font-weight-extrabold);
+  --text-badge-line-height: var(--line-height-tight);
+  --text-badge-spacing: 0.08em;
+
+  --text-chip-size: var(--font-size-xs);
+  --text-chip-weight: var(--font-weight-bold);
+  --text-chip-line-height: var(--line-height-normal);
+  --text-chip-spacing: 0.04em;
+
+  --text-helper-size: var(--font-size-sm);
+  --text-helper-weight: var(--font-weight-medium);
+  --text-helper-line-height: var(--line-height-normal);
+  
+  --color-bg: #f5f7ff;
+  --color-bg-alt: #edf1fb;
+  --color-surface: rgb(255 255 255 / 0.98);
+  --color-surface-soft: rgb(247 249 255 / 0.98);
+  --color-border: rgb(71 117 237 / 0.18);
+
+  --color-primary: #4775ed;
+  --color-primary-hover: #315ed9;
+  --color-primary-light: rgb(71 117 237 / 0.12);
+  --color-primary-border: rgb(71 117 237 / 0.18);
+
+  --color-text-main: #1e293b;
+  --color-text-muted: #64748b;
+  --color-danger: #e11d48;
+  --color-danger-light: rgb(225 29 72 / 0.08);
+  
+  --radius-sm: 0.625rem;
+  --radius-md: 0.875rem;
+  --radius-lg: 1.25rem;
+  
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 10px 34px rgba(55, 76, 160, 0.07);
+  --shadow-glass: 0 16px 42px rgba(55, 76, 160, 0.12);
+  --shadow-focus: 0 0 0 3px rgb(37 99 235 / 0.14);
+}
+
+

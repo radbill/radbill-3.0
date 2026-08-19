@@ -1,0 +1,322 @@
+.portal-form {
+  display: grid;
+  gap: 1rem;
+}
+
+.portal-wifi-tabs {
+  display: flex;
+  gap: 1.25rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.portal-wifi-tabs button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.65rem 0 0.75rem;
+  border: 0;
+  background: transparent;
+  color: var(--color-text-muted);
+  font-size: var(--text-label-size);
+  font-weight: var(--text-label-weight);
+}
+
+.portal-wifi-tabs button::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  bottom: -1px;
+  left: 0;
+  height: 2px;
+  border-radius: 999px;
+  background: transparent;
+}
+
+.portal-wifi-tabs button.is-active {
+  color: var(--color-primary-hover);
+}
+
+.portal-wifi-tabs button.is-active::after {
+  background: var(--color-primary);
+}
+
+.portal-wifi-tabs svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+.portal-wifi-device-selector {
+  margin-bottom: 1rem;
+}
+
+.portal-form__actions {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.portal-form__actions .btn {
+  width: auto;
+  flex: 1;
+}
+
+.portal-wifi-field {
+  display: grid;
+  gap: 0.45rem;
+  color: var(--color-text-muted);
+  font-size: var(--text-body-size);
+}
+
+.portal-wifi-field__label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: fit-content;
+  font-size: var(--text-label-size);
+  font-weight: var(--text-label-weight);
+  line-height: var(--text-label-line-height);
+  color: var(--color-text-main);
+}
+
+.portal-wifi-field__label svg {
+  width: 1rem;
+  height: 1rem;
+  color: var(--color-primary);
+  stroke-width: 2;
+}
+
+.portal-wifi-field select {
+  min-height: 46px;
+  width: 100%;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 0 0.85rem;
+  background: var(--color-surface);
+  color: var(--color-text-main);
+}
+
+.portal-wifi-field select:focus {
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow-focus);
+  outline: none;
+}
+
+.portal-device-summary {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.portal-device-summary p {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin: 0;
+}
+
+.portal-device-summary p > svg {
+  flex: 0 0 auto;
+  width: 1rem;
+  height: 1rem;
+  color: var(--color-primary);
+}
+
+.portal-device-summary p > span {
+  color: var(--color-text-muted);
+  font-size: var(--text-label-size);
+}
+
+.portal-device-summary p > strong {
+  color: var(--color-text-main);
+  font-size: var(--text-body-strong-size);
+  line-height: var(--text-body-strong-line-height);
+  overflow-wrap: anywhere;
+}
+
+.portal-wifi-note,
+.portal-alert--error,
+.portal-alert--success {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.55rem;
+}
+
+.portal-wifi-note > svg,
+.portal-alert > svg {
+  flex: 0 0 auto;
+  width: 1rem;
+  height: 1rem;
+  margin-top: 0.15rem;
+}
+
+.portal-wifi-note > svg {
+  color: var(--color-primary);
+}
+
+.portal-connected-devices {
+  display: grid;
+  gap: 1rem;
+}
+
+.portal-connected-devices__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.portal-connected-devices__header > div {
+  display: grid;
+  gap: 0.2rem;
+}
+
+.portal-connected-devices__header .btn {
+  flex: 0 0 auto;
+  width: auto;
+  min-height: 2.45rem;
+  padding: 0.55rem 0.8rem;
+}
+
+.portal-connected-list {
+  display: grid;
+}
+
+.portal-connected-list__heading {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding-bottom: 0.65rem;
+  color: var(--color-text-main);
+}
+
+.portal-connected-list__heading svg {
+  width: 1rem;
+  height: 1rem;
+  color: var(--color-primary);
+}
+
+.portal-connected-list__heading small {
+  margin-left: auto;
+  color: var(--color-text-muted);
+  font-size: var(--text-caption-size);
+}
+
+.portal-connected-list__row {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.8rem 0;
+  border-top: 1px solid var(--color-border);
+}
+
+.portal-connected-list__row > svg {
+  width: 1.1rem;
+  height: 1.1rem;
+  color: var(--color-primary);
+}
+
+.portal-connected-list__row > div {
+  display: grid;
+  gap: 0.15rem;
+  min-width: 0;
+}
+
+.portal-connected-list__row strong {
+  overflow: hidden;
+  color: var(--color-text-main);
+  font-size: var(--text-body-strong-size);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.portal-connected-list__row > div span {
+  overflow-wrap: anywhere;
+  color: var(--color-text-muted);
+  font-size: var(--text-caption-size);
+}
+
+.portal-connected-list__empty {
+  padding: 0.9rem 0;
+  border-top: 1px solid var(--color-border);
+}
+
+@media (max-width: 560px) {
+  .portal-wifi-tabs {
+    gap: 0;
+  }
+
+  .portal-wifi-tabs button {
+    flex: 1;
+    justify-content: center;
+  }
+
+  .portal-connected-devices__header {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .portal-connected-devices__header .btn {
+    width: 100%;
+  }
+
+}
+
+.portal-alert {
+  border-radius: 1rem;
+  padding: 0.9rem 1rem;
+  font-size: var(--text-body-size);
+}
+
+.portal-alert--error {
+  background: rgba(225, 29, 72, 0.08);
+  color: #be123c;
+  border: 1px solid rgba(225, 29, 72, 0.14);
+}
+
+.portal-alert--success {
+  background: rgba(5, 150, 105, 0.08);
+  color: #047857;
+  border: 1px solid rgba(5, 150, 105, 0.14);
+}
+
+.status-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  padding: 0.35rem 0.7rem;
+  border-radius: 999px;
+  font-size: var(--text-chip-size);
+  font-weight: var(--text-chip-weight);
+  text-transform: uppercase;
+  letter-spacing: var(--text-chip-spacing);
+}
+
+.status-chip--paid {
+  background: rgba(5, 150, 105, 0.12);
+  color: #047857;
+}
+
+.status-chip--issued,
+.status-chip--draft {
+  background: rgba(59, 130, 246, 0.12);
+  color: #2563eb;
+}
+
+.status-chip--partial {
+  background: rgba(217, 119, 6, 0.12);
+  color: #c2410c;
+}
+
+.status-chip--overdue {
+  background: rgba(225, 29, 72, 0.12);
+  color: #be123c;
+}
+
+.status-chip--void {
+  background: rgba(100, 116, 139, 0.12);
+  color: #475569;
+}
+
+
