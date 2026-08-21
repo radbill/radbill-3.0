@@ -111,7 +111,7 @@ Untuk memasang release tertentu:
 
 ```bash
 wget -qO- https://raw.githubusercontent.com/radbill/radbill-3.0/main/install.sh |
-  sudo env RADBILL_RELEASE=v1.0.0.53 bash
+  sudo env RADBILL_RELEASE=v3.0.0.3 bash
 ```
 
 Untuk instalasi noninteraktif:
