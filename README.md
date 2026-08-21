@@ -71,21 +71,68 @@ diaktifkan saat instalasi.
 
 ## Instalasi
 
-### 1. Unduh paket rilis
+### 1. Instalasi otomatis (disarankan)
 
-Buka halaman **Releases** repository ini, pilih versi terbaru, lalu unduh dua
+Jalankan perintah berikut pada Ubuntu/Debian:
+
+```bash
+wget -qO- https://raw.githubusercontent.com/radbill/radbill-3.0/main/install.sh | sudo bash
+```
+
+Bootstrap akan mendeteksi arsitektur server, mengunduh installer dan ZIP runtime
+dari GitHub Release terbaru, memverifikasi checksum keduanya, lalu menjalankan
+installer interaktif sebagai `root`.
+
+Untuk memasang release tertentu:
+
+```bash
+wget -qO- https://raw.githubusercontent.com/radbill/radbill-3.0/main/install.sh |
+  sudo env RADBILL_RELEASE=v1.0.0.53 bash
+```
+
+Untuk instalasi noninteraktif:
+
+```bash
+wget -qO- https://raw.githubusercontent.com/radbill/radbill-3.0/main/install.sh |
+  sudo env RADBILL_INSTALL_ADMIN_PASSWORD='gunakan-password-kuat' \
+  bash -s -- \
+    --yes \
+    --admin-email admin@example.com \
+    --public-app-url https://example.com \
+    --public-api-url https://example.com
+```
+
+Password melalui environment lebih aman daripada argumen command karena argumen
+dapat terlihat pada daftar proses. Jika password tidak diberikan, installer akan
+membuat password acak dan menampilkannya satu kali.
+
+Jika ingin memeriksa isi bootstrap sebelum menjalankannya, unduh sebagai file:
+
+```bash
+wget https://raw.githubusercontent.com/radbill/radbill-3.0/main/install.sh
+less install.sh
+chmod +x install.sh
+sudo ./install.sh
+```
+
+Perintah melalui `raw.githubusercontent.com` memerlukan repository dan branch
+yang dapat dibaca oleh server. Untuk repository private, unduh script dan asset
+release menggunakan kredensial read-only melalui mekanisme distribusi privat.
+
+### 2. Instalasi manual dari asset release
+
+Buka halaman **Releases** repository ini, pilih versi terbaru, lalu unduh empat
 asset dengan arsitektur yang sama. Contoh untuk `amd64`:
 
 ```text
 installer-linux-amd64
+installer-linux-amd64.sha256
 radbill-linux-amd64.zip
+radbill-linux-amd64.zip.sha256
 ```
 
-Jangan mengganti nama ZIP. Letakkan installer dan ZIP di folder yang sama.
-Gunakan file checksum atau signature yang disediakan pada release untuk
-memverifikasi integritas download.
-
-### 2. Jalankan installer
+Jangan mengganti nama asset. Letakkan installer dan ZIP di folder yang sama,
+lalu verifikasi keduanya menggunakan file checksum yang disediakan pada release.
 
 ```bash
 chmod +x installer-linux-amd64
@@ -109,10 +156,6 @@ sudo RADBILL_INSTALL_ADMIN_PASSWORD='gunakan-password-kuat' \
   --public-app-url https://billing.example.com \
   --public-api-url https://billing.example.com
 ```
-
-Password melalui environment lebih aman daripada argumen command karena argumen
-dapat terlihat pada daftar proses. Jika password tidak diberikan, installer akan
-membuat password acak dan menampilkannya satu kali.
 
 ### 3. Periksa service
 
