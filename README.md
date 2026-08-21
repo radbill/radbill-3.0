@@ -71,6 +71,30 @@ diaktifkan saat instalasi.
 
 ## Instalasi
 
+> [!WARNING]
+> **Jangan memasang atau menjalankan versi ini bersamaan dengan [RadBill versi lama](https://github.com/radbill/radbill) pada server yang sama.**
+> Kedua aplikasi dapat memakai resource sistem yang sama, terutama port UDP
+> RADIUS `1812` (authentication) dan `1813` (accounting), serta berpotensi
+> berbenturan pada port aplikasi seperti `8080`, service systemd, direktori
+> instalasi, konfigurasi, dan database. Konflik tersebut dapat membuat service
+> gagal aktif atau, lebih berbahaya, mengarahkan request RADIUS dan data ke
+> instance yang salah.
+
+Gunakan VPS/server terpisah selama pengujian atau migrasi. Jika versi baru harus
+dipasang pada server lama, backup database dan konfigurasi terlebih dahulu,
+siapkan prosedur migrasi, lalu hentikan seluruh service RadBill lama sebelum
+menjalankan installer baru. Installer versi ini bukan alat migrasi otomatis dan
+tidak menghapus instalasi lama.
+
+Periksa apakah port utama masih digunakan sebelum instalasi:
+
+```bash
+sudo ss -lntup | grep -E ':(1812|1813|8080)([[:space:]]|$)'
+```
+
+Jika perintah menampilkan proses RadBill lama, jangan lanjutkan sampai proses
+tersebut dihentikan atau instalasi dipindahkan ke server yang terpisah.
+
 ### 1. Instalasi otomatis (disarankan)
 
 Jalankan perintah berikut pada Ubuntu/Debian:
