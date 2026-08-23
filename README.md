@@ -100,7 +100,7 @@ tersebut dihentikan atau instalasi dipindahkan ke server yang terpisah.
 Jalankan perintah berikut pada Ubuntu/Debian:
 
 ```bash
-wget -qO- https://raw.githubusercontent.com/radbill/radbill-3.0/main/install.sh | sudo bash
+wget -qO /tmp/radbill-install.sh https://raw.githubusercontent.com/radbill/radbill-3.0/main/install.sh && sudo bash /tmp/radbill-install.sh && rm -f /tmp/radbill-install.sh
 ```
 
 Bootstrap akan mendeteksi arsitektur server, mengunduh installer dan ZIP runtime
