@@ -298,6 +298,6 @@ Hapus target lama, aktifkan ulang notifikasi, lalu biarkan portal mendaftarkan t
 - [ ] User service dapat membaca JSON.
 - [ ] `radbill-api` dan `radbill-worker` aktif.
 - [ ] Endpoint `/readyz` berhasil.
-- [ ] Notifikasi sudah diuji pada domain HTTPS produksi atau staging.
+- [x] Notifikasi sudah diuji pada domain HTTPS produksi atau staging.
 
 Jika seluruh checklist terpenuhi, konfigurasi dasar Firebase Cloud Messaging pada RadBill sudah siap digunakan.
