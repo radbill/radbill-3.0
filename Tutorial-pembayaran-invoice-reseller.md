@@ -29,7 +29,8 @@ Role adalah kumpulan izin. Role bawaan **Reseller** dapat digunakan, atau admin 
 
 | Kelompok di pengaturan role | Nama izin pada aplikasi | Kode izin | Kebutuhan |
 | --- | --- | --- | --- |
-| `billing` | Read invoices | `invoice.read` | Diperlukan untuk melihat dan memilih invoice melalui antarmuka |
+| `billing` | Search invoices for payment | `invoice.payment.search` | Mencari invoice untuk dibayar lewat topbar, tanpa membuka halaman Invoice |
+| `billing` | Read invoices | `invoice.read` | Opsional untuk membuka daftar, detail, dan ringkasan invoice; juga dapat digunakan untuk pencarian topbar |
 | `wallet` | Pay invoices from wallets | `wallet.pay` | Diperlukan untuk membayar dari wallet; juga mengizinkan akses saldo dan mutasi wallet sendiri |
 | `customer` | Read customers | `customer.read` | Dianjurkan untuk melihat data dan detail pelanggan |
 | `payment` | Read payments | `payment.read` | Dianjurkan untuk memeriksa riwayat dan detail pembayaran |
@@ -38,6 +39,23 @@ Role adalah kumpulan izin. Role bawaan **Reseller** dapat digunakan, atau admin 
 **`invoice.read` berada pada kelompok `billing`, dengan nama “Read invoices”.** Izin tersebut bukan bagian dari kelompok `payment`.
 
 Izin `wallet.pay` tidak memerlukan `payment.create` atau `payment.confirm`. Reseller juga tidak memerlukan izin umum `wallet.read` hanya untuk membaca wallet sendiri.
+
+### Reseller yang hanya boleh mencari dan membayar
+
+Buat **role khusus**, misalnya `Reseller Pembayaran`, lalu aktifkan **Search invoices for payment** (`invoice.payment.search`, kelompok `billing`) dan **Pay invoices from wallets** (`wallet.pay`). Jangan aktifkan `invoice.read` pada seluruh role akun tersebut jika halaman Invoice harus dibatasi. Lepaskan role bawaan yang masih memberi `invoice.read` dari akun ini. Hubungan akun dengan identitas reseller tetap dipertahankan.
+
+Gunakan role khusus karena izin role bawaan, termasuk `reseller`, diisi ulang dari konfigurasi bawaan saat API mulai berjalan. Menghapus `invoice.read` hanya dari role bawaan tidak bertahan setelah restart.
+
+- Topbar menerima pencarian nomor invoice, kode pelanggan, atau nama pelanggan sepanjang 2–100 karakter, dengan maksimal 8 hasil per pencarian.
+- Hanya invoice berstatus `issued`, `partial`, atau `overdue` dengan sisa tagihan positif yang ditampilkan. Pencarian berlaku dalam organisasi akun, bukan hanya pelanggan milik reseller.
+- Hasil hanya memuat identitas invoice/pelanggan, jatuh tempo, status, total, dan jumlah terbayar; tidak menyertakan item, catatan, atau detail layanan.
+- Pembayaran tetap memeriksa saldo dan sisa kredit wallet sendiri. Izin pencarian saja tidak memberi izin membayar.
+- Setelah pembayaran berhasil, topbar menampilkan bukti transaksi yang bisa dicetak A4 atau thermal. Bukti menampilkan jumlah transaksi, bukan klaim sisa invoice dari data pencarian yang mungkin sudah berubah.
+- API daftar, detail, dan ringkasan invoice tetap menolak akses tanpa `invoice.read`.
+
+Untuk akun admin/Finance yang tidak terhubung reseller, pencarian topbar membutuhkan `invoice.payment.search` (atau `invoice.read`) **serta** `payment.create` dan `payment.confirm`.
+
+Setelah API diperbarui dan dimulai ulang, izin baru tersedia pada pengaturan role. Izin `invoice.read` yang sudah diberikan tetap berlaku; untuk membatasi akun lama menjadi pencarian saja, pindahkan akun ke role khusus di atas, lalu pengguna masuk ulang.
 
 ### Izin yang sebaiknya dikelola oleh admin atau Finance
 
@@ -59,7 +77,7 @@ Untuk penggunaan reseller sehari-hari, tidak perlu memberikan izin penyesuaian s
 
 1. Hubungkan akun pengguna dengan data reseller yang benar.
 2. Buka **Roles/Peran**, pilih role yang digunakan reseller, lalu buka pengaturan izinnya.
-3. Aktifkan `invoice.read` dan `wallet.pay`. Tambahkan izin baca pelanggan dan pembayaran sesuai kebutuhan.
+3. Aktifkan `invoice.payment.search` dan `wallet.pay` untuk pencarian dan pembayaran saja. Tambahkan `invoice.read` jika boleh membuka halaman Invoice; tambahkan izin baca pelanggan dan pembayaran sesuai kebutuhan.
 4. Aktifkan `wallet.topup.self` hanya jika topup mandiri akan digunakan dan gateway sudah dikonfigurasi.
 5. Admin menetapkan limit kredit. Gunakan **Rp0** apabila pembayaran hanya boleh memakai saldo tunai.
 6. Simpan pengaturan, lalu masuk ulang pada akun reseller agar sesi menggunakan izin terbaru.
@@ -183,7 +201,7 @@ Jika hasil pembayaran belum jelas, periksa invoice dan riwayat terlebih dahulu s
 
 - [ ] API dan frontend yang mendukung pembayaran serta pengembalian wallet sudah dipasang.
 - [ ] Akun pengguna terhubung dengan data reseller yang benar.
-- [ ] Izin `invoice.read` dan `wallet.pay` aktif.
+- [ ] Izin `invoice.payment.search` (atau `invoice.read`) dan `wallet.pay` aktif.
 - [ ] Izin baca pelanggan dan pembayaran ditambahkan sesuai kebutuhan.
 - [ ] Limit kredit ditetapkan oleh admin; Rp0 jika kredit tidak diizinkan.
 - [ ] Pembayaran uji menghasilkan debit wallet dan perubahan invoice yang sesuai.
