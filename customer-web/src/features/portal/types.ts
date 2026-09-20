@@ -118,6 +118,8 @@ export interface PaymentLinkResponse {
 
 export interface PortalConfigResponse {
   public_payment_base_url: string;
+  captcha_enabled?: boolean;
+  captcha_site_key?: string;
 }
 
 export interface PaymentGatewayChannel {

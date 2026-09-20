@@ -1,8 +1,10 @@
-import { useState, type FormEvent } from 'react';
+import { useEffect, useState, type FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { fetchApi } from '../../../shared/api';
+import { fetchApi, fetchPublicApi } from '../../../shared/api';
 import { Button, Input } from '../../../shared/ui';
 import './LoginPage.css';
+import { ServiceContact } from '../../../shared/ui/ServiceContact';
+import { TurnstileWidget } from '../../../shared/ui/TurnstileWidget';
 
 interface RequestOTPResult {
   sent: boolean;
@@ -14,7 +16,16 @@ export default function LoginPage() {
   const [email, setEmail] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [captchaConfig, setCaptchaConfig] = useState<{ captcha_enabled: boolean; captcha_site_key: string } | null>(null);
+  const [captchaToken, setCaptchaToken] = useState('');
+  const [captchaResetKey, setCaptchaResetKey] = useState(0);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    void fetchPublicApi<{ captcha_enabled: boolean; captcha_site_key: string }>('/customer/config')
+      .then((response) => setCaptchaConfig(response.data))
+      .catch(() => setError('Konfigurasi verifikasi keamanan gagal dimuat. Muat ulang halaman.'));
+  }, []);
 
   const handleLogin = async (e: FormEvent) => {
     e.preventDefault();
@@ -24,12 +35,17 @@ export default function LoginPage() {
       setError('Email wajib diisi');
       return;
     }
+    if (!captchaConfig) return;
+    if (captchaConfig.captcha_enabled && !captchaToken) {
+      setError('Selesaikan verifikasi keamanan terlebih dahulu.');
+      return;
+    }
 
     setLoading(true);
     try {
       const response = await fetchApi<RequestOTPResult>('/customer/auth/request-otp', {
         method: 'POST',
-        body: JSON.stringify({ email })
+        body: JSON.stringify({ email, captcha_token: captchaToken || undefined })
       });
       
       // Navigate to OTP verification with email state
@@ -42,6 +58,7 @@ export default function LoginPage() {
       });
     } catch (err: any) {
       setError(err.message);
+      if (captchaConfig.captcha_enabled) setCaptchaResetKey((value) => value + 1);
     } finally {
       setLoading(false);
     }
@@ -68,7 +85,10 @@ export default function LoginPage() {
               onChange={(e) => setEmail(e.target.value)}
               error={error}
             />
-            <Button type="submit" isLoading={loading}>
+            {captchaConfig?.captcha_enabled ? (
+              <TurnstileWidget siteKey={captchaConfig.captcha_site_key} resetKey={captchaResetKey} onToken={setCaptchaToken} />
+            ) : null}
+            <Button type="submit" isLoading={loading} disabled={!captchaConfig || (captchaConfig.captcha_enabled && !captchaToken)}>
               Kirim Kode OTP
             </Button>
           </form>
@@ -76,6 +96,7 @@ export default function LoginPage() {
           <div className="auth-note">
             Pastikan email sesuai data pelanggan. Jika salah, kode OTP tidak akan masuk ke akun Anda.
           </div>
+          <ServiceContact />
         </section>
       </div>
     </div>

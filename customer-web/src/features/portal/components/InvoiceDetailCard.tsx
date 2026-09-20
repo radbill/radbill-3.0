@@ -68,6 +68,10 @@ export function InvoiceDetailCard({ invoice, onClose }: InvoiceDetailCardProps) 
         </div>
 
         <div className="invoice-detail">
+          {invoice.status === 'deferred' && (<p className="text-muted">Tagihan ditunda tanpa pembayaran dan akan digabung ke invoice berikutnya.</p>)}
+          {invoice.status === 'carried' && (
+            <p className="text-muted">Sisa tagihan dipindahkan ke invoice berikutnya. Pembayaran dilakukan melalui invoice tersebut.</p>
+          )}
           <div className="invoice-detail__summary-list">
             <div className="invoice-detail__summary-row">
               <div className="invoice-detail__summary-label">

@@ -1,7 +1,7 @@
 import { Button } from '../../../shared/ui';
 import { PortalEmptyState } from './PortalEmptyState';
 import type { Invoice } from '../types';
-import { formatCurrency, formatDate, normalizeStatus } from '../utils';
+import { formatCurrency, formatDate, normalizeStatus, isInvoicePayable } from '../utils';
 
 interface InvoiceListProps {
   invoices: Invoice[];
@@ -36,7 +36,7 @@ export function InvoiceList({
     <div className="invoice-list">
       {invoices.map((invoice) => {
         const outstanding = Math.max(invoice.total_rp - invoice.paid_rp, 0);
-        const canPay = outstanding > 0 && invoice.status !== 'void';
+        const canPay = isInvoicePayable(invoice);
         const isSelected = selectedInvoiceID === invoice.id;
         const isOverdue = normalizeStatus(invoice.status) === 'overdue';
         const isOpeningDetail = invoiceLoading && isSelected;
@@ -75,20 +75,26 @@ export function InvoiceList({
                 <strong>{formatCurrency(invoice.total_rp)}</strong>
               </div>
               <div className="invoice-row__group invoice-row__group--amount">
-                <span className="invoice-row__label">Sisa</span>
+                <span className="invoice-row__label">{invoice.status === 'carried' ? 'Sisa tagihan dipindahkan' : 'Sisa'}</span>
                 <strong>{formatCurrency(outstanding)}</strong>
               </div>
               <div className="invoice-row__actions">
-                <Button
-                  onClick={(event) => {
-                    event.stopPropagation();
-                    void onPay(invoice.id);
-                  }}
-                  isLoading={payingInvoiceID === invoice.id}
-                  disabled={!canPay}
-                >
-                  {canPay ? 'Bayar' : 'Selesai'}
-                </Button>
+                {invoice.status === 'deferred' ? (
+                  <span className="text-muted">Tagihan ditunda ke invoice berikutnya</span>
+                ) : invoice.status === 'carried' ? (
+                  <span className="text-muted">Sisa tagihan dipindahkan ke invoice berikutnya</span>
+                ) : (
+                  <Button
+                    onClick={(event) => {
+                      event.stopPropagation();
+                      void onPay(invoice.id);
+                    }}
+                    isLoading={payingInvoiceID === invoice.id}
+                    disabled={!canPay}
+                  >
+                    {canPay ? 'Bayar' : 'Selesai'}
+                  </Button>
+                )}
               </div>
             </div>
           </article>

@@ -2,6 +2,8 @@ const statusLabel: Record<string, string> = {
   draft: 'Draft',
   issued: 'Terbit',
   partial: 'Sebagian',
+  carried: 'Sisa tagihan dipindahkan',
+  deferred: 'Ditunda ke invoice berikutnya',
   paid: 'Lunas',
   overdue: 'Jatuh Tempo',
   void: 'Dibatalkan',
@@ -15,6 +17,10 @@ const statusLabel: Record<string, string> = {
   closed: 'Selesai',
   unpaid: 'Belum dibayar',
 };
+
+export function isInvoicePayable(invoice: { status: string; total_rp: number; paid_rp: number }) {
+  return invoice.total_rp > invoice.paid_rp && invoice.status !== 'void' && invoice.status !== 'carried' && invoice.status !== 'deferred';
+}
 
 export function formatCurrency(value: number) {
   return new Intl.NumberFormat('id-ID', {

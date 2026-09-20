@@ -10,6 +10,7 @@ import {
   syncCustomerPushInstallation,
 } from '../push/pushNotifications';
 import { PortalContext, type PortalContextValue } from './portalContext';
+import { isInvoicePayable } from './utils';
 import type {
   CustomerMeResponse,
   CustomerProfile,
@@ -258,7 +259,7 @@ export function PortalProvider({ children }: PropsWithChildren) {
   }, [me?.customer.id]);
 
   const outstandingInvoices = useMemo(
-    () => invoices.filter((invoice) => invoice.total_rp > invoice.paid_rp && invoice.status !== 'void'),
+    () => invoices.filter(isInvoicePayable),
     [invoices],
   );
 

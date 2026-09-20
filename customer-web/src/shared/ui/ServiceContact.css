@@ -1,0 +1,44 @@
+.service-contact {
+  display: grid;
+  gap: 0.5rem;
+  min-width: 0;
+  margin-top: 1rem;
+  padding: 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface-soft);
+  color: var(--color-text-muted);
+  font-size: var(--text-helper-size);
+  font-weight: var(--text-helper-weight);
+  line-height: var(--text-helper-line-height);
+  overflow-wrap: anywhere;
+}
+
+.service-contact strong {
+  color: var(--color-text-main);
+  font-size: var(--text-label-size);
+  font-weight: var(--text-label-weight);
+  line-height: var(--text-label-line-height);
+}
+
+.service-contact a {
+  justify-self: start;
+  max-width: 100%;
+  color: var(--color-primary-hover);
+  font-weight: var(--font-weight-semibold);
+  text-decoration: none;
+  text-underline-offset: 0.2em;
+  border-radius: var(--radius-sm);
+}
+
+.service-contact a:hover {
+  color: var(--color-primary);
+  text-decoration: underline;
+}
+
+.service-contact a:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
+}
+
+.auth-card .service-contact { margin-top: 0; }

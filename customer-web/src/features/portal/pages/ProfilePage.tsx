@@ -1,6 +1,7 @@
 import { NotificationPreferencesForm } from '../components/NotificationPreferencesForm';
 import { ProfileForm } from '../components/ProfileForm';
 import { usePortal } from '../usePortal';
+import { ServiceContact } from '../../../shared/ui/ServiceContact';
 
 export default function ProfilePage() {
   const {
@@ -58,6 +59,7 @@ export default function ProfilePage() {
           onSubmit={handleNotificationPreferenceSubmit}
         />
       </section>
+      <ServiceContact />
     </div>
   );
 }

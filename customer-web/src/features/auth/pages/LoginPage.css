@@ -60,6 +60,19 @@
   gap: 0.95rem;
 }
 
+.auth-captcha {
+  display: grid;
+  justify-items: center;
+  gap: 0.5rem;
+  min-height: 65px;
+}
+
+.auth-captcha__error {
+  color: var(--color-danger, #dc2626);
+  font-size: var(--text-label-size);
+  text-align: center;
+}
+
 .auth-note {
   padding: 0.95rem 1rem;
   border-radius: 1rem;
